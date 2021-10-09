@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eburger", "Eburger\Eburger.csproj", "{97BB91E7-2CDF-46C6-8598-15587D5A1FE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97BB91E7-2CDF-46C6-8598-15587D5A1FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97BB91E7-2CDF-46C6-8598-15587D5A1FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97BB91E7-2CDF-46C6-8598-15587D5A1FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97BB91E7-2CDF-46C6-8598-15587D5A1FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC80DED5-2C97-46D9-9A80-58E727D3C9D6}
+	EndGlobalSection
+EndGlobal

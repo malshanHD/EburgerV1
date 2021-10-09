@@ -1,0 +1,159 @@
+﻿@*@model IEnumerable<Eburger.Models.cart>*@
+@model Eburger.ViewModel.homeview
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="font-weight-bold text-center text-warning">Dash<span class="text-primary text-uppercase">Board</span> <i class="fas fa-chart-line text-danger"></i></h3>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-home-list" href="/Carts/Admindashboard" role="tab" aria-controls="home">Dashboard</a>
+                        <a class="list-group-item list-group-item-action " id="list-profile-list" href="/Carts/Checkorder" role="tab" aria-controls="profile">Orders</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" href="/Account/Usercreate" role="tab" aria-controls="profile">Create user</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/burger_type//Index" role="tab" aria-controls="settings">Manage Menu</a>
+                        <a class="list-group-item list-group-item-action " id="list-settings-list" href="/tbl_burger/Index" role="tab" aria-controls="settings">Manage Burgers</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/Manage/ChangePassword" role="tab" aria-controls="settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card l-bg-cherry">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0 font-weight-bold">Account Balance</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h4 class="d-flex align-items-center mb-0">
+                                                LKR @Model.ord.Sum(i => i.totalAmount)
+                                            </h4>
+                                            <div><a class="badge badge-success " href="@Url.Action("SalesReport")"> Statistic Report <i class="fas fa-print"></i></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card l-bg-blue-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Last 30 days income</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-12">
+                                            <h4 class="d-flex align-items-center mb-0">
+                                                LKR @Model.ordlastthree.Sum(i => i.totalAmount)
+                                            </h4>
+                                            <div><a class="badge badge-success " href="@Url.Action("Income")"> Get details Report <i class="fas fa-print"></i></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card l-bg-green-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Last twelve month income</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h4 class="d-flex align-items-center mb-0">
+                                                LKR @Model.ordYear.Sum(i => i.totalAmount)
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card l-bg-orange-dark">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Burger Statistic Report</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h4 class="d-flex align-items-center mb-0">
+                                            </h4>
+                                            <div><a class="badge badge-success " href="@Url.Action("BurgerStatistic")"> Get details Report <i class="fas fa-print"></i></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card l-bg-cherry">
+                                <div class="card-statistic-3 p-4">
+                                    <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                                    <div class="mb-4">
+                                        <h5 class="card-title mb-0">Available Burgers</h5>
+                                    </div>
+                                    <div class="row align-items-center mb-2 d-flex">
+                                        <div class="col-8">
+                                            <h4 class="d-flex align-items-center mb-0">
+                                            </h4>
+                                            <div><a class="badge badge-success " href="@Url.Action("BurgerReport")"> Get Report <i class="fas fa-print"></i></a></div>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                        <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+@*<ul>
+    @foreach (var item in Model.GroupBy(i=>i.userID))
+    {
+
+    <li>
+        @Html.DisplayFor(modelItem => item.Key)
+        <ul>
+
+        </ul>
+    </li>
+
+    }
+    </ul>*@

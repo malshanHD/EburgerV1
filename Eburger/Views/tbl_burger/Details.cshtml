@@ -1,0 +1,66 @@
+﻿@model Eburger.Models.tbl_burger
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbl_burger</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BurgerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BurgerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BurgerWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BurgerWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descriptions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descriptions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.burger_type.typeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.burger_type.typeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BurgerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

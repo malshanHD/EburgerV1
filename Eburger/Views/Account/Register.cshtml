@@ -1,0 +1,97 @@
+﻿@model Eburger.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@*@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
+        </div>
+    }*@
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card bg-info">
+                <div class="card-header">
+                    <h3 class="text-center text-white font-weight-bolder">Registration Form</h3>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="text-light">First name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="FName" id="FName" placeholder="First Name" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-light">Last name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="LName" id="LName" placeholder="Last Name" />
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <label class="text-light">Address <span class="text-danger">*</span></label>
+                                <textarea class="form-control " name="UAddress" id="UAddress" placeholder="Address" rows="2"></textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-light">Mobile number <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="PhoneNumber" id="PhoneNumber" placeholder="Mobile number" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-light">Email <span class="text-danger">*</span></label>
+                                <input class="form-control" type="email" name="Email" id="Email" placeholder="Email address" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-light mt-3">Password <span class="text-danger">*</span></label>
+                                <input class="form-control " type="password" name="Password" id="Password" placeholder="Password" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="text-light mt-3">Confirm password <span class="text-danger">*</span></label>
+                                <input class="form-control " type="password" name="ConfirmPassword" id="ConfirmPassword" placeholder="Confirm Password" />
+                            </div>
+                        </div>
+                        <div class="row mt-4 ">
+                            <div class="col-md-4">
+                                <input class="btn btn-block btn-outline-warning text-light" value="Submit" type="submit" />
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

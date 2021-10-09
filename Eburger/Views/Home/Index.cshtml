@@ -1,0 +1,148 @@
+﻿@model Eburger.ViewModel.homeview
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="container-fluid" style="background-color:black;">
+    <div class="row justify-content-center">
+        <div class="col-md-5 mt-3 mb-3 align-self-center">
+            <h1 class="text-light font-weight-bolder text-uppercase">Double Burger offers</h1>
+            <h3 class="font-weight-bold text-success">Buy Double and get Trice</h3>
+            <p class="text-light font-italic">Additional charge for premium toppings. Minimum of 2 required</p>
+            <h5 class="font-weight-bolder text-white">LKR 995.00 <span class="text-secondary" style="font-size:75%;"><s>LKR 1590.00</s></span></h5>
+            <button type="submit" class="btn btn-lg btn-outline-warning font-weight-bolder text-light mt-2">Call us now <i class="fas fa-phone "></i></button>
+            @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-group mt-5">
+                    <input type="text" class="form-control" name="searchtext" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-5 mt-3 mb-3">
+            <img class="d-block w-100" src="~/Images/systemIMG/prom.png" style="width:100%;">
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid" style="background-color:white;">
+    <div class="row justify-content-center">
+        <input type="button" class="btn btn-warning font-weight-bold btn-lg" data-toggle="modal" data-target="#ourmenu" value="Menu" />
+
+    </div>
+    <div class="row justify-content-center mt-2 mb-3">
+        @foreach (var item in Model.burgerTypes)
+        {
+            <div class="col-md-1 align-self-end">
+                <a href="/Home/Menuview/@Html.DisplayFor(modelItem => item.typeID)" class="text-decoration-none">
+                    <img class="card-img-top" src="@Url.Content(item.typeImage)" style="width: 100%;" />
+                    <p class="text-center font-weight-bold mt-2 text-uppercase text-secondary " style="font-size:80%;"> @Html.DisplayFor(modelItem => item.typeName)</p>
+                </a>
+
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div class="container-fluid  mt-3" style="background-color:linen;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 mt-2 text-center">
+                <h3 class="font-weight-bolder"><span class="text-danger font-weight-bolder">Our</span> new Dishes <i class="fas fa-hotdog"></i></h3> <hr />
+
+            </div>
+        </div>
+        <div class="row" style="height:100%;">
+            @foreach (var item in Model.burgers)
+            {
+                <div class="col-md-3 mb-2 ">
+                    <a href="/Home/Burgerview/@Html.DisplayFor(modelItem => item.BurgerID)" class="text-decoration-none">
+                        <div class="card " style="height: 100%; width: 100%; ">
+                            <div class="card-body ">
+                                <img class="card-img-top " src="@Url.Content(item.ImagePath)" style="width: 100%; bottom: 0px; " />
+                            </div>
+                            <div class="card-footer text-center">
+                                <h5 class="font-weight-bold text-secondary">@Html.DisplayFor(modelItem => item.BurgerName)</h5>
+                                <p class="text-secondary" style="font-size:80%;">@Html.DisplayFor(modelItem => item.BurgerWeight)</p>
+                                <p class="text-warning"><b>LKR @Html.DisplayFor(modelItem => item.UnitPrice)</b></p>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <img class="d-block w-100" src="~/Images/systemIMG/contact.jpg" style="width:100%;">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <img class="d-block w-100" src="~/Images/systemIMG/map.jpg" style="width:100%;">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <img class="d-block w-100" src="~/Images/systemIMG/burger.jpg" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="ourmenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content bg-dark  align-content-center">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bolder text-center text-light" id="exampleModalLongTitle">Menu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-5">
+                    <div class="row">
+                        @foreach (var item in Model.burgerTypes)
+                        {
+                            <div class="col-3">
+                                <a href="/Home/Menuview/@Html.DisplayFor(modelItem => item.typeID)" class="text-decoration-none">
+                                    <img class="card-img-top" src="@Url.Content(item.typeImage)" style="width: 100%;" />
+                                    <p class="text-center font-weight-bolder mt-1 text-uppercase text-light " style="font-size:80%;"> @Html.DisplayFor(modelItem => item.typeName)</p>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

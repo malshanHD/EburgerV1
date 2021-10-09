@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="941265f6d2f040c39f30c3452c7b156b" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="E_burgerModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.AspNetRole" Width="1.5" PointX="0.625" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.AspNetUser" Width="1.5" PointX="2.875" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.burger_type" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.cart" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.order" Width="1.5" PointX="5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.payment" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.tbl_burger" Width="1.5" PointX="8" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="E_burgerModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.FK__cart__userID__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.FK__orders__userID__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.FK__tbl_burge__typeI__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.FK__cart__BurgerID__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.FK__payment__orderID__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="E_burgerModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

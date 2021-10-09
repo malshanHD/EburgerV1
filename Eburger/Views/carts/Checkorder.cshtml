@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Eburger.Models.cart>
+
+@{
+    ViewBag.Title = "Checkorder";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="font-weight-bold text-center text-warning">New <span class="text-primary text-uppercase">Orders</span> <i class="fas fa-shopping-cart text-success"></i></h3>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action " id="list-home-list" href="/Carts/Admindashboard" role="tab" aria-controls="home">Dashboard</a>
+                        <a class="list-group-item list-group-item-action active" id="list-profile-list" href="/Carts/Checkorder" role="tab" aria-controls="profile">Orders</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" href="/Account/Usercreate" role="tab" aria-controls="profile">Create user</a>
+                        <a class="list-group-item list-group-item-action " id="list-settings-list" href="/burger_type//Index" role="tab" aria-controls="settings">Manage Menu</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/tbl_burger/Index" role="tab" aria-controls="settings">Manage Burgers</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/Manage/ChangePassword" role="tab" aria-controls="settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var item in Model.GroupBy(i => i.userID))
+                        {
+                            <div class="col-3">
+                                @*<a href="/carts/Orderview/@Html.DisplayFor(modelItem => item.Key)">*@
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="~/Images/systemIMG/ordericon.jpg" style="width:100%;" />
+                                    </div>
+                                    <div class="card-footer">
+                                        @using (Html.BeginForm("Orderview", "Carts", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                                        {
+                                            <p class="text-justify" style="font-size:50%;">User id : @Html.DisplayFor(modelItem => item.Key)</p>
+                                            <input type="hidden" name="username" id="username" value="@Html.DisplayFor(modelItem => item.Key)" />
+                                            <input type="submit" value="Review" class="btn btn-success btn-block" />
+                                        }
+                                    </div>
+                                </div>
+                                @*</a>*@
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<ul>
+    @foreach (var item in Model.GroupBy(i=>i.userID))
+    {
+
+    <li>
+        @Html.DisplayFor(modelItem => item.Key)
+        <ul>
+
+        </ul>
+    </li>
+
+    }
+    </ul>*@

@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/cardstyle.css" rel="stylesheet" />
+    <link href="~/Content/countstyle.css" rel="stylesheet" />
+    <script src="~/Scripts/countscript.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'ABeeZee';
+        }
+
+        header {
+            padding: 10px 100px;
+            box-sizing: border-box;
+        }
+
+        nav {
+            width: 100%;
+            background: rgba(0,0,0, .8);
+            border-top: 1px solid rgba(255,255,255, .2);
+            border-bottom: 1px solid rgba(255,255,255, .2);
+            top: 0;
+        }
+
+            nav ul {
+                display: flex;
+                margin: 0;
+                justify-content: flex-end;
+            }
+
+                nav ul li {
+                    list-style: none;
+                }
+
+                    nav ul li a {
+                        display: block;
+                        color: orange;
+                        padding: 0 10px;
+                        text-decoration: none;
+                    }
+
+                        nav ul li a:hover,
+                        nav ul li a.active {
+                            background: orange;
+                        }
+
+        .modal-body {
+            background-image: url('/Images/systemIMG/menuItem.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 400px;
+        }
+
+        .modal-dialog {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        .modal-content {
+            height: auto;
+            min-height: 100%;
+            border-radius: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand font-weight-bold" href="/Home/Index"><b style="font-size: 200%;">E</b> <span style="font-size: 130%;" class="text-danger">Burger <i class="fas fa-hamburger"></i></span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav" style="font-size:large">
+                <li class="nav-item active ">
+                    <a class="nav-link font-weight-bold text-dark" href="/Home/Index"><b>Home</b></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link font-weight-bold text-dark" href="/Home/About"><b>About</b></a>
+                </li>
+               
+                <li class="nav-item active">
+                    <a class="nav-link font-weight-bold text-dark" href="/Home/Contact"><b>Contact</b></a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Customer"))
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link font-weight-bold text-dark" href="/carts/Index"><b>Cart <i class="fas fa-shopping-cart"></i></b></a>
+                        </li>
+                    }
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link font-weight-bold text-dark" href="/carts/Admindashboard"><b>Dashboard <i class="fas fa-chart-line"></i></b></a>
+                        </li>
+                    }
+                    if (User.IsInRole("Deliverman"))
+                    {
+                        <li class="nav-item active">
+                            <a class="nav-link font-weight-bold text-dark" href="/carts/Checkdelivery"><b>Delivery <i class="fas fa-chart-line"></i></b></a>
+                        </li>
+                    }
+
+                }
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <div class="container-fluid" style="background: rgb(46,46,84);">
+            <footer>
+                <div class="row">
+                    <div class="col-3 mt-3">
+                        <img src="~/Images/systemIMG/logoBur.png" style="width:100%;" alt="" />
+                    </div>
+                    <div class="col-2 text-light mt-3">
+                        <h5><b>Customer Care</b></h5> <hr>
+                        <a class="text-light" href="#"><p>Our Service</p></a>
+                        <a class="text-light" href="#"><p>Helps</p></a>
+                        <a class="text-light" href="#"><p>Payments methods</p></a>
+                        <a class="text-light" href="#"><p>Burger Items</p></a>
+                        <a class="text-light" href="#"><p>Contact us</p></a>
+                        <a class="text-light" href="#"><p>About</p></a>
+                    </div>
+                    <div class="col-2 text-light mt-3">
+                        <h5><b>Other</b></h5> <hr>
+                        <a class="text-light" href="#"><p>Customize Burger</p></a>
+                        <a class="text-light" href="#"><p>Feedbacks</p></a>
+                        <a class="text-light" href="#"><p>Complains</p></a>
+                    </div>
+                    <div class="col-3 text-center text-light mt-3">
+                        <h5><b>Payment Methods</b></h5>
+                        <hr>
+                        <i class="fas fa-money-bill-wave fa-4x text-warning"></i>
+                        <i class="fab fa-cc-amazon-pay fa-4x text-warning ml-2"></i>
+                    </div>
+                    <div class="col-2 text-center text-light mt-3 align-self-center">
+                        <img src="~/Images/systemIMG/qr-code.png" style="width:100%;" alt="" />
+                    </div>
+                </div>
+                <hr>
+                <div class="row text-center justify-content-center">
+                    <div class="col-5">
+                        <h3 class="text-center text-light"><b>Follow us</b></h3>
+                    </div>
+                </div>
+                <div class="row text-center justify-content-center">
+                    <div class="col-12">
+                        <i class="fab fa-facebook fa-2x " style="color: #2CA4EF"></i>
+                        <i class="fab fa-twitter fa-2x  ml-2" style="color: #2CA4EF"></i>
+                        <i class="fab fa-instagram fa-2x  ml-2" style="color: rgb(173,173,173);"></i>
+                        <i class="fab fa-whatsapp fa-2x ml-2" style="color: #20E300"></i>
+                    </div>
+                </div>
+                <p class="text-center font-weight-bolder text-light mt-3">&copy; @DateTime.Now.Year - E Burger Pvt Ltd</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 60) {
+                    document.getElementById('navbar_top').classList.add('fixed-top');
+                    // add padding top to show content behind navbar
+                    navbar_height = document.querySelector('.navbar').offsetHeight;
+                    document.body.style.paddingTop = navbar_height + 'px';
+                } else {
+                    document.getElementById('navbar_top').classList.remove('fixed-top');
+                    // remove padding top from body
+                    document.body.style.paddingTop = '0';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // make it as accordion for smaller screens
+            if (window.innerWidth > 992) {
+
+                document.querySelectorAll('.navbar .nav-item').forEach(function (everyitem) {
+
+                    everyitem.addEventListener('mouseover', function (e) {
+
+                        let el_link = this.querySelector('a[data-bs-toggle]');
+
+                        if (el_link != null) {
+                            let nextEl = el_link.nextElementSibling;
+                            el_link.classList.add('show');
+                            nextEl.classList.add('show');
+                        }
+
+                    });
+                    everyitem.addEventListener('mouseleave', function (e) {
+                        let el_link = this.querySelector('a[data-bs-toggle]');
+
+                        if (el_link != null) {
+                            let nextEl = el_link.nextElementSibling;
+                            el_link.classList.remove('show');
+                            nextEl.classList.remove('show');
+                        }
+
+
+                    })
+                });
+
+            }
+            // end if innerWidth
+        });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

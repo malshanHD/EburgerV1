@@ -1,0 +1,117 @@
+﻿@model Eburger.Models.burger_type
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@*@using (Html.BeginForm("Create", "burger_type", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Burger Menu types</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Menu Name</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="typeName" id="typeName" placeholder="Name" />
+                        @Html.ValidationMessageFor(model => model.typeName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Upload icon</label>
+                    <div class="col-md-10">
+                        <input type="file" name="ImageFile" id="ImageFile" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.typeImage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}*@
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="font-weight-bold text-center text-warning">New <span class="text-primary text-uppercase">Orders</span> <i class="fas fa-shopping-cart text-success"></i></h3>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action " id="list-home-list" href="/Carts/Admindashboard" role="tab" aria-controls="home">Dashboard</a>
+                        <a class="list-group-item list-group-item-action " id="list-profile-list" href="/Carts/Checkorder" role="tab" aria-controls="profile">Orders</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" href="/Account/Usercreate" role="tab" aria-controls="profile">Create user</a>
+                        <a class="list-group-item list-group-item-action active" id="list-settings-list" href="/burger_type//Index" role="tab" aria-controls="settings">Manage Menu</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/tbl_burger/Index" role="tab" aria-controls="settings">Manage Burgers</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/Manage/ChangePassword" role="tab" aria-controls="settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Create", "burger_type", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-md-8">
+                                    <h4>Burger Menu types</h4>
+                                    <hr />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8">Menu Name</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" name="typeName" id="typeName" placeholder="Name" />
+                                            @Html.ValidationMessageFor(model => model.typeName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-8">Upload icon</label>
+                                        <div class="col-md-10">
+                                            <input type="file" name="ImageFile" id="ImageFile" class="form-control" />
+                                            @Html.ValidationMessageFor(model => model.typeImage, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Create" class="btn btn-primary btn-block" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,64 @@
+﻿@model Eburger.Models.tbl_burger
+
+@{
+    ViewBag.Title = "Burgerview";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <p><span class="font-weight-bold"><a href="/Home/Index" class="text-decoration-none text-info">Home</a></span>/<span class="bg-light text-secondary font-weight-bold" style="font-size:80%;"><a href="/Home/Menuview/@Html.DisplayFor(modelItem => Model.typeID)" class="text-decoration-none"> @Html.DisplayFor(model => model.burger_type.typeName)</a> </span>/<span class="text-warning font-weight-bold" style="font-size:80%;">@Html.DisplayFor(model => model.BurgerName)</span></p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img src="@Url.Content(Model.ImagePath)" style="width:100%;" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("Create", "Carts", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <h2 class="font-weight-bolder">@Html.DisplayFor(model => model.BurgerName)</h2>
+                <p class="text-secondary">@Html.DisplayFor(model => model.Descriptions)</p>
+                <h5 class="text-warning font-weight-bolder">LKR @Html.DisplayFor(model => model.UnitPrice)</h5>
+                <p class="text-secondary font-weight-bold font-italic" style="font-size:80%;">@Html.DisplayFor(model => model.BurgerWeight)</p>
+                <hr />
+                <div class="quantity buttons_added">
+                    <input type="hidden" name="BurgerID" value="@Html.DisplayFor(model => model.BurgerID)" />
+                    <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity" id="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="" onchange="getPrice()"><input type="button" value="+" class="plus">
+
+                    <input type="hidden" name="Price" id="Price" value=" @Html.DisplayFor(model => model.UnitPrice)" />
+                    <input type="hidden" value=" @Html.DisplayFor(model => model.UnitPrice)" name="totamount" id="total">
+
+                    <input type="submit" class="btn btn-warning text-dark font-weight-bolder btn-block" value="Add to cart" />
+                </div>
+                <p class="mt-3 text-secondary" style="font-size:70%;">Category: <span class="text-dark font-weight-bolder">@Html.DisplayFor(model => model.burger_type.typeName)</span></p>
+                <p class="mt-3 text-secondary" style="font-size:70%;">
+                    Share:
+                    <span class="text-secondary font-weight-bolder">
+                        <i class="fab fa-facebook-square ml-2"></i>
+                        <i class="fab fa-twitter ml-2"></i>
+                        <i class="fab fa-whatsapp-square ml-2"></i>
+                        <i class="fab fa-instagram ml-2"></i>
+                        <i class="fab fa-linkedin ml-2"></i>
+                        <i class="fab fa-envelop ml-2"></i>
+                    </span>
+                </p>
+
+
+            }
+
+        </div>
+    </div>
+</div>
+
+<script>
+        getPrice = function() {
+            var numVal1 = Number(document.getElementById("Price").value);
+            var numVal2 = Number(document.getElementById("quantity").value);
+            var totalValue =  (numVal1 * numVal2)
+            document.getElementById("total").value = totalValue;
+        }
+</script>
+
+

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Eburger.Models.order>
+
+@{
+    ViewBag.Title = "Ongoing";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="font-weight-bold text-center text-warning">Pending <span class="text-primary text-uppercase">Deliveries</span> <i class="fas fa-shopping-cart text-success"></i></h3>
+            <hr />
+        </div>
+    </div>
+
+    <div class="row mt-3 justify-content-center">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action " id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Dashboard</a>
+                        <a class="list-group-item list-group-item-action " id="list-profile-list" href="/Carts/Checkdelivery" role="tab" aria-controls="profile">Pending delivery</a>
+                        <a class="list-group-item list-group-item-action active" id="list-profile-list" href="/Carts/Ongoing" role="tab" aria-controls="profile">Processing</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" href="/Manage/ChangePassword" role="tab" aria-controls="settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row ">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-3">
+                                @*<a href="/carts/Orderview/@Html.DisplayFor(modelItem => item.Key)">*@
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="~/Images/systemIMG/delicer.gif" style="width:100%;" />
+                                    </div>
+                                    <div class="card-footer">
+                                        <p class="text-center font-weight-bold text-secondary" style="font-size:80%;">Order No @Html.DisplayFor(modelItem => item.orderID)</p>
+                                        <p class="text-secondary font-weight-bold" style="font-size:85%;">Delivery Address : @Html.DisplayFor(modelItem => item.AspNetUser.uAddress)</p>
+                                        <p class="text-secondary font-weight-bold text-center" style="font-size:80%">Contact No. @Html.DisplayFor(modelItem => item.AspNetUser.PhoneNumber)</p>
+                                        @using (Html.BeginForm("Paymentsuccess", "Carts", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="OrderID" id="OrderID" value="@Html.DisplayFor(modelItem => item.orderID)" />
+                                            <input type="hidden" name="Email" id="Email" value="@Html.DisplayFor(modelItem => item.AspNetUser.Email)" />
+                                            <input type="hidden" name="totalAmount" id="totalAmount" value="@Html.DisplayFor(modelItem => item.totalAmount)" />
+                                            <input type="hidden" name="fName" id="fName" value="@Html.DisplayFor(modelItem => item.AspNetUser.fName)" />
+                                            <input type="submit" class="btn btn-success text-center btn-block" value="Payment" />
+                                        }
+
+                                        @*@using (Html.BeginForm("Orderview", "Carts", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            <p class="text-justify" style="font-size:50%;">User id : @Html.DisplayFor(modelItem => item.Key)</p>
+            <input type="hidden" name="username" id="username" value="@Html.DisplayFor(modelItem => item.Key)" />
+            <input type="submit" value="Review" class="btn btn-success btn-block" />
+        }*@
+                                    </div>
+                                </div>
+                                @*</a>*@
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<ul>
+    @foreach (var item in Model.GroupBy(i=>i.userID))
+    {
+
+    <li>
+        @Html.DisplayFor(modelItem => item.Key)
+        <ul>
+
+        </ul>
+    </li>
+
+    }
+    </ul>*@

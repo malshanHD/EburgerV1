@@ -1,0 +1,66 @@
+﻿@model Eburger.Models.cart
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>cart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totamount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cartStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cartStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orderStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orderStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_burger.BurgerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_burger.BurgerName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cartID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
