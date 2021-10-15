@@ -11,8 +11,7 @@ namespace Eburger.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
+    
     public partial class tbl_burger
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,11 +19,10 @@ namespace Eburger.Models
         {
             this.carts = new HashSet<cart>();
         }
-
-        public HttpPostedFileBase ImageFile { get; set; }
+    
         public int BurgerID { get; set; }
         public string BurgerName { get; set; }
-        public int typeID { get; set; }
+        public Nullable<int> typeID { get; set; }
         public decimal UnitPrice { get; set; }
         public string BurgerWeight { get; set; }
         public string ImagePath { get; set; }

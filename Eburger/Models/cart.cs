@@ -15,13 +15,13 @@ namespace Eburger.Models
     public partial class cart
     {
         public int cartID { get; set; }
-        public int BurgerID { get; set; }
+        public Nullable<int> BurgerID { get; set; }
         public string userID { get; set; }
         public int quantity { get; set; }
         public decimal totamount { get; set; }
         public bool cartStatus { get; set; }
         public bool orderStatus { get; set; }
-        public int orderNo { get; set; }
+        public Nullable<int> orderNo { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual tbl_burger tbl_burger { get; set; }

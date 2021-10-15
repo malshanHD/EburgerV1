@@ -15,8 +15,10 @@ namespace Eburger.Controllers
     public class HomeController : Controller
     {
         private E_burgerEntities db = new E_burgerEntities();
-        public ActionResult Index()
+        public ActionResult Index(bool PasswordUpdate=false)
         {
+            ViewBag.PasswordUpdate = PasswordUpdate;
+
             int limitCount = 8;
             var username = User.Identity.GetUserId();
 
@@ -107,7 +109,7 @@ namespace Eburger.Controllers
 
             return View();
         }
-
+        //cart view 
         public ActionResult cartview()
         {
             var username = User.Identity.GetUserId();
@@ -135,7 +137,10 @@ namespace Eburger.Controllers
             cart cart = db.carts.Find(id);
             db.carts.Remove(cart);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "carts", new { Isdelete = true });
+
+      
+
 
 
         }
@@ -146,7 +151,7 @@ namespace Eburger.Controllers
             var cart = db.carts.Include(c => c.AspNetUser).Include(c => c.tbl_burger).Where(x => x.userID == username).Where(y => y.cartStatus == false).Where(o => o.orderStatus == false);
             db.carts.RemoveRange(cart);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "carts", new { Isdelete = true });
         }
     }
 }

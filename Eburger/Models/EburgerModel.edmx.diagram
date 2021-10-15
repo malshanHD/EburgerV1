@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="941265f6d2f040c39f30c3452c7b156b" Name="Diagram1" ZoomLevel="47">
-        <EntityTypeShape EntityType="E_burgerModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="E_burgerModel.C__MigrationHistory" Width="1.5" PointX="13.625" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="E_burgerModel.AspNetRole" Width="1.5" PointX="0.625" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="E_burgerModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="E_burgerModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />

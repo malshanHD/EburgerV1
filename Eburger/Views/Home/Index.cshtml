@@ -3,7 +3,15 @@
     ViewBag.Title = "Home Page";
 }
 
-
+@if (ViewBag.PasswordUpdate)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Password Changed successfully</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 <div class="container-fluid" style="background-color:black;">
     <div class="row justify-content-center">
         <div class="col-md-5 mt-3 mb-3 align-self-center">

@@ -16,9 +16,13 @@ namespace Eburger.Controllers
         private E_burgerEntities db = new E_burgerEntities();
 
         // GET: burger_type
+        //admin access level
         [Authorize(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult Index(bool Issuccess = false, bool Isupdate = false, bool Isdelete = false)
         {
+            ViewBag.Issuccess = Issuccess;
+            ViewBag.Isupdate = Isupdate;
+            ViewBag.Isdelete = Isdelete;
             return View(db.burger_type.ToList());
         }
 
@@ -64,7 +68,7 @@ namespace Eburger.Controllers
 
                 db.burger_type.Add(burger_type);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Issuccess = true });
             }
 
             return View(burger_type);
@@ -98,7 +102,7 @@ namespace Eburger.Controllers
             {
                 db.Entry(burger_type).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Issuccess = true });
             }
             return View(burger_type);
         }
@@ -128,7 +132,7 @@ namespace Eburger.Controllers
             burger_type burger_type = db.burger_type.Find(id);
             db.burger_type.Remove(burger_type);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { Issuccess = true });
         }
 
         protected override void Dispose(bool disposing)

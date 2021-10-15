@@ -17,8 +17,11 @@ namespace Eburger.Controllers
 
         // GET: tbl_burger
         [Authorize(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult Index(bool Issuccess = false, bool Isupdate = false, bool Isdelete =false)
         {
+            ViewBag.Issuccess = Issuccess;
+            ViewBag.Isupdate = Isupdate;
+            ViewBag.Isdelete = Isdelete;
             var tbl_burger = db.tbl_burger.Include(t => t.burger_type);
             return View(tbl_burger.ToList());
         }
@@ -43,6 +46,7 @@ namespace Eburger.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
+            
             ViewBag.typeID = new SelectList(db.burger_type, "typeID", "typeName");
             return View();
         }
@@ -66,7 +70,7 @@ namespace Eburger.Controllers
 
                 db.tbl_burger.Add(tbl_burger);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Issuccess = true });
             }
 
             ViewBag.typeID = new SelectList(db.burger_type, "typeID", "typeName", tbl_burger.typeID);
@@ -102,7 +106,7 @@ namespace Eburger.Controllers
             {
                 db.Entry(tbl_burger).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Isupdate = true });
             }
             ViewBag.typeID = new SelectList(db.burger_type, "typeID", "typeName", tbl_burger.typeID);
             return View(tbl_burger);
@@ -133,7 +137,7 @@ namespace Eburger.Controllers
             tbl_burger tbl_burger = db.tbl_burger.Find(id);
             db.tbl_burger.Remove(tbl_burger);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { Isdelete = true });
         }
 
         protected override void Dispose(bool disposing)

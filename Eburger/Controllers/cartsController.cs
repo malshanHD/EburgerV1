@@ -21,8 +21,12 @@ namespace Eburger.Controllers
 
         // GET: carts
         [Authorize(Roles = "Customer")]
-        public ActionResult Index()
+        public ActionResult Index(bool Issuccess = false, bool Isupdate = false, bool Isdelete = false)
         {
+            ViewBag.Issuccess = Issuccess;
+            ViewBag.Isupdate = Isupdate;
+            ViewBag.Isdelete = Isdelete;
+
             var username = User.Identity.GetUserId();
 
             var carts = db.carts.Include(c => c.AspNetUser).Include(c => c.tbl_burger).Where(x => x.userID == username).Where(y => y.cartStatus == false).Where(o => o.orderStatus == false);
@@ -48,15 +52,19 @@ namespace Eburger.Controllers
             return View(dashboard);
         }
 
+        //income report genrate
         public ActionResult Income()
         {
+            //select month
             var lastThree = DateTime.Now.AddMonths(-1);
 
+            //get data from order table
             List<order> Income = new List<order>();
             Income = db.orders.Include(c => c.AspNetUser).Where(d => d.orderDate >= lastThree).ToList();
 
-
+            //report doc
             ReportDocument rd = new ReportDocument();
+            //report path and name
             rd.Load(Path.Combine(Server.MapPath("~/Reports"), "Income.rpt"));
 
             rd.SetDataSource(Income);
@@ -263,7 +271,7 @@ namespace Eburger.Controllers
             var receiverEmail = new MailAddress(Email, "Receiver");
             var password = "mfourbrothers20";
             string msg = "Dear " + fName + ",";
-            string sub = "Order Delivery";
+            string sub = "Payment";
             string body = "We received LKR "+totalAmount+" for your order (Order no."+OrderID+"). Thank you for dealing with us. Cheers...!";
 
             var smtp = new SmtpClient
@@ -326,7 +334,7 @@ namespace Eburger.Controllers
                 cart.userID = username;
                 db.carts.Add(cart);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { Issuccess = true });
                 //return RedirectToAction("Index","Home");
             }
 

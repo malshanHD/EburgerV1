@@ -318,7 +318,7 @@ namespace Eburger.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             AddErrors(result);
-            return View();
+            return RedirectToAction("Index","Home", new { PasswordUpdate = true });
         }
 
         //
