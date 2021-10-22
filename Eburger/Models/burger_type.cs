@@ -11,7 +11,8 @@ namespace Eburger.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class burger_type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,8 @@ namespace Eburger.Models
         public int typeID { get; set; }
         public string typeName { get; set; }
         public string typeImage { get; set; }
-    
+        public HttpPostedFileBase ImageFile { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_burger> tbl_burger { get; set; }
     }

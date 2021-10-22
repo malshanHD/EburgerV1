@@ -143,7 +143,7 @@ namespace Eburger.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/Register create
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]

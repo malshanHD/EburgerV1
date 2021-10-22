@@ -11,7 +11,8 @@ namespace Eburger.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class tbl_burger
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,7 +28,8 @@ namespace Eburger.Models
         public string BurgerWeight { get; set; }
         public string ImagePath { get; set; }
         public string Descriptions { get; set; }
-    
+        public HttpPostedFileBase ImageFile { get; set; }
+
         public virtual burger_type burger_type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cart> carts { get; set; }
