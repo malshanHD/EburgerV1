@@ -15,7 +15,7 @@ namespace Eburger.Controllers
     {
         private E_burgerEntities db = new E_burgerEntities();
 
-        // GET: burger_type
+        // GET: burgers_type
         //admin access level
         [Authorize(Roles = "Admin")]
         public ActionResult Index(bool Issuccess = false, bool Isupdate = false, bool Isdelete = false)
@@ -26,7 +26,7 @@ namespace Eburger.Controllers
             return View(db.burger_type.ToList());
         }
 
-        // GET: burger_type/Details/5
+        // GET: burgers_type/Details/5
         [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
@@ -42,14 +42,14 @@ namespace Eburger.Controllers
             return View(burger_type);
         }
 
-        // GET: burger_type/Create
+        // GET: burgers_type/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: burger_type/Create
+        // POST: burgers_type/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Admin")]
@@ -74,7 +74,7 @@ namespace Eburger.Controllers
             return View(burger_type);
         }
 
-        // GET: burger_type/Edit/5
+        // GET: burgers_type/Edit/5
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
@@ -90,7 +90,7 @@ namespace Eburger.Controllers
             return View(burger_type);
         }
 
-        // POST: burger_type/Edit/5
+        // POST: burgers_type/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Admin")]
@@ -107,7 +107,7 @@ namespace Eburger.Controllers
             return View(burger_type);
         }
 
-        // GET: burger_type/Delete/5
+        // GET: burgers_type/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
@@ -123,7 +123,7 @@ namespace Eburger.Controllers
             return View(burger_type);
         }
 
-        // POST: burger_type/Delete/5
+        // POST: burgers_type/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
