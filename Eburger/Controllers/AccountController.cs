@@ -135,7 +135,7 @@ namespace Eburger.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register create
         [AllowAnonymous]
         public ActionResult Register()
         {
